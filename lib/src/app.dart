@@ -13,7 +13,6 @@ class MyApp extends ConsumerWidget {
 
   static final _defaultLightColorScheme = ColorScheme.fromSwatch(
     primarySwatch: Colors.green,
-    brightness: Brightness.light,
   );
 
   static final _defaultDarkColorScheme = ColorScheme.fromSwatch(
@@ -24,25 +23,27 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final useMaterial3 = ref.watch(material3Provider);
-    return DynamicColorBuilder(builder: (lightColorScheme, darkColorScheme) {
-      return MaterialApp.router(
-        routerConfig: goRouter,
-        debugShowCheckedModeBanner: false,
-        restorationScopeId: 'app',
-        theme: ThemeData(
-          colorScheme: useMaterial3
-              ? lightColorScheme ?? _defaultLightColorScheme
-              : _defaultLightColorScheme,
-          useMaterial3: useMaterial3,
-        ),
-        darkTheme: ThemeData(
-          colorScheme: useMaterial3
-              ? darkColorScheme ?? _defaultDarkColorScheme
-              : _defaultDarkColorScheme,
-          useMaterial3: useMaterial3,
-        ),
-        themeMode: ref.watch(themeModeProvider),
-      );
-    });
+    return DynamicColorBuilder(
+      builder: (lightColorScheme, darkColorScheme) {
+        return MaterialApp.router(
+          routerConfig: goRouter,
+          debugShowCheckedModeBanner: false,
+          restorationScopeId: 'app',
+          theme: ThemeData(
+            colorScheme: useMaterial3
+                ? lightColorScheme ?? _defaultLightColorScheme
+                : _defaultLightColorScheme,
+            useMaterial3: useMaterial3,
+          ),
+          darkTheme: ThemeData(
+            colorScheme: useMaterial3
+                ? darkColorScheme ?? _defaultDarkColorScheme
+                : _defaultDarkColorScheme,
+            useMaterial3: useMaterial3,
+          ),
+          themeMode: ref.watch(themeModeProvider),
+        );
+      },
+    );
   }
 }

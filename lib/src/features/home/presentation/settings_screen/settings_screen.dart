@@ -34,7 +34,7 @@ class SettingsScreen extends ConsumerWidget {
               value: ThemeMode.system,
               groupValue: themeMode,
               onChanged: (value) {
-                ref.read(themeModeProvider.notifier).state = value as ThemeMode;
+                ref.read(themeModeProvider.notifier).state = value!;
               },
             ),
             RadioListTile(
@@ -42,27 +42,28 @@ class SettingsScreen extends ConsumerWidget {
               value: ThemeMode.dark,
               groupValue: themeMode,
               onChanged: (value) {
-                ref.read(themeModeProvider.notifier).state = value as ThemeMode;
+                ref.read(themeModeProvider.notifier).state = value!;
               },
             ),
             RadioListTile(
-                title: const Text('Light'),
-                value: ThemeMode.light,
-                groupValue: themeMode,
-                onChanged: (value) {
-                  ref.read(themeModeProvider.notifier).state =
-                      value as ThemeMode;
-                }),
+              title: const Text('Light'),
+              value: ThemeMode.light,
+              groupValue: themeMode,
+              onChanged: (value) {
+                ref.read(themeModeProvider.notifier).state = value!;
+              },
+            ),
             const Text(
               'Material 3',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
             ),
-            Switch(
-                value: material3,
-                onChanged: (value) {
-                  ref.read(material3Provider.notifier).state = value;
-                }),
+            Switch.adaptive(
+              value: material3,
+              onChanged: (value) {
+                ref.read(material3Provider.notifier).state = value;
+              },
+            ),
           ],
         ),
       ),
